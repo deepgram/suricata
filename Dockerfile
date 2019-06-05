@@ -18,4 +18,7 @@ VOLUME /var/log/suricata
 
 RUN /usr/bin/suricata -V
 
+RUN sed -i'' '/SURICATA TLS invalid handshake message/s/^/#/g' /etc/suricata/rules/tls-events.rules && \
+    sed -i'' '/SURICATA TLS invalid record\/traffic/s/^/#/g' /etc/suricata/rules/tls-events.rules
+
 ENTRYPOINT ["/usr/bin/suricata"]
